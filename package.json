@@ -1,0 +1,14 @@
+{
+  "name": "awesome-js-function",
+  "version": "1.0.0",
+  "description": "A js function collection by EternalHeart.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "EternalHeart",
+  "license": "ISC"
+}
