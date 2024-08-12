@@ -2,17 +2,27 @@
   "name": "@eternalheart/utils",
   "version": "1.0.0",
   "description": "A js function utils library by EternalHeart.",
+  "author": "EternalHeart",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wh131462/utils"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
+  "readme": "README.md",
   "imports": {
-    "#common/*": "./lib/common/*"
+    "#node-lib/*": "./node-lib/*"
   },
   "bin": {
     "feature": "bin/feature.js"
   },
-  "main": "lib/index.ts",
-  "readme": "README.md",
   "scripts": {
-    "build": "node esbuild.config.js",
+    "build:types": "tsc --project tsconfig.json",
+    "build:js": "node esbuild.config.js",
+    "build": "run-s build:js build:types",
     "publish": "npm run build && cd ./dist && npm publish",
     "publish:update": "npm version patch || true && npm run cli:publish",
     "unpublish": "npm unpublish --force @eternalheart/utils"
@@ -22,10 +32,12 @@
     "eternalheart",
     "utils"
   ],
-  "author": "EternalHeart",
-  "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.23.0"
+    "esbuild": "^0.23.0",
+    "glob": "^11.0.0",
+    "npm-run-all": "^4.1.5",
+    "tsc": "^2.0.4",
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "chalk": "^5.3.0",

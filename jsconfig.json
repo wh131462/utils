@@ -2,7 +2,7 @@
     "compilerOptions": {
         "baseUrl": "./",
         "paths": {
-            "#common/*": ["./lib/common/*"]
+            "#node-lib/*": ["./node-lib/*"]
         }
     }
 }

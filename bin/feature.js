@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import {program} from "commander";
-import {logger} from "../lib/common/cli/logger";
-import {setRoot} from "../lib/common/cli/root";
+import {logger} from "node-lib/common/logger";
+import {setRoot} from "node-lib/common/root";
+import {comfirm, inquire} from "node-lib/common/promot";
 import {join} from "path"
-import {comfirm, inquire} from "../lib/common/cli/promot";
 
-const version = process.env.VERSION??"0.0.0";
+const version = process.env.VERSION ?? "0.0.0";
 
 program
     .version(version)
@@ -20,15 +20,15 @@ program
         logger.info(`Starting create new feature.`);
         await setRoot()
         const featuresDir = join(process.cwd(), "lib", "features");
-        if(!projectName){
-            projectName =  await inquire("未指定新特性名称,请确定:")
+        if (!projectName) {
+            projectName = await inquire("未指定新特性名称,请确定:")
         }
-        const targetName = join(featuresDir,projectName)
+        const targetName = join(featuresDir, projectName)
         const isCreate = await comfirm(`是否确认创建${featuresDir}`);
-        if(isCreate){
+        if (isCreate) {
             logger.info(`新特性创建完成,地址为:file://${targetName}`);
             process.exit(0);
-        }else{
+        } else {
             logger.info("用户终止创建新特性.")
             process.exit(0);
         }

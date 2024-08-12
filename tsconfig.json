@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "declaration": true,        // 生成 .d.ts 声明文件
+    "declarationMap": true,     // 生成声明文件的 sourcemap
+    "emitDeclarationOnly": true,// 只生成声明文件，不编译 JavaScript
+    "outDir": "./dist/types",         // 声明文件输出目录
+    "strict": true,             // 启用严格类型检查
+    "module": "ESNext",         // 目标模块类型
+    "target": "ESNext",         // 目标语言版本
+    "moduleResolution": "node", // 模块解析策略
+    "esModuleInterop": true,    // 兼容 ES 模块
+    "skipLibCheck": true,       // 跳过库的类型检查
+    "forceConsistentCasingInFileNames": true // 强制文件名一致性
+  },
+  "include": ["lib"],    // 包含的文件
+  "exclude": ["node_modules"]    // 排除的文件
+}
