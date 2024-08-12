@@ -1,6 +1,14 @@
-
 # .v4p backup files
 *~.xml
 
-# Dynamic plugins .dll
-bin/
+# ignore
+package-lock.json
+yarn.lovk
+*.lock
+package-lock.yml
+
+# build
+dist
+
+# editor
+.idea

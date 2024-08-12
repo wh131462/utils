@@ -1,14 +1,36 @@
 {
-  "name": "awesome-js-function",
+  "name": "@eternalheart/utils",
   "version": "1.0.0",
-  "description": "A js function collection by EternalHeart.",
-  "main": "index.js",
+  "description": "A js function utils library by EternalHeart.",
+  "type": "module",
+  "imports": {
+    "#common/*": "./lib/common/*"
+  },
+  "bin": {
+    "feature": "bin/feature.js"
+  },
+  "main": "lib/index.ts",
+  "readme": "README.md",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node esbuild.config.js",
+    "publish": "npm run build && cd ./dist && npm publish",
+    "publish:update": "npm version patch || true && npm run cli:publish",
+    "unpublish": "npm unpublish --force @eternalheart/utils"
   },
   "keywords": [
-    "js"
+    "js",
+    "eternalheart",
+    "utils"
   ],
   "author": "EternalHeart",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.23.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "inquirer": "^10.1.8",
+    "ora": "^8.0.1"
+  }
 }
