@@ -1,6 +1,6 @@
 {
   "name": "@eternalheart/utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A js function utils library by EternalHeart.",
   "author": "EternalHeart",
   "license": "ISC",
@@ -44,6 +44,5 @@
     "inquirer": "^10.1.8",
     "ora": "^8.0.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
