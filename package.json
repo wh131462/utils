@@ -17,9 +17,10 @@
     "#node-lib/*": "./node-lib/*"
   },
   "bin": {
-    "feature": "bin/feature.js"
+    "fc": "bin/feature.js"
   },
   "scripts": {
+    "feature": "node bin/feature.js feature ",
     "build:types": "tsc --project tsconfig.json",
     "build:js": "node esbuild.config.js",
     "build": "run-s build:js build:types",

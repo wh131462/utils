@@ -1,5 +1,8 @@
 /**
  * 获取对象中存在的属性值
+ * @example
+ * const data = {a:{b:1}};
+ * value(data,"a.b");// console => 1
  * @param data
  * @param prop
  */
