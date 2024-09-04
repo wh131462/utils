@@ -12,3 +12,10 @@ yarn add @eternalheart/utils
 pnpm add @eternalheart/utils
 ```
 
+Import form `@eternalheart/utils` and use.
+
+```ts
+import {RandomId} from "@eternalheart/utils";
+// normally use
+RandomId.create();
+```
