@@ -24,9 +24,9 @@
     "build:types": "tsc --project tsconfig.json",
     "build:js": "node esbuild.config.js",
     "build": "run-s build:js build:types",
-    "publish_": "npm run build && cd ./dist && npm publish",
+    "publish_": "npm run build && cd ./dist && npm publish --registry=https://registry.npmjs.com",
     "publish:update": "npm version patch || true && npm run publish_",
-    "unpublish_": "npm unpublish --force @eternalheart/utils"
+    "unpublish_": "npm unpublish --force @eternalheart/utils --registry=https://registry.npmjs.com"
   },
   "keywords": [
     "js",
