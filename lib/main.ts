@@ -5,3 +5,4 @@ export * from './features/random-id';
 export * from './features/logger';
 export * from './features/curry';
 export * from './features/safe-json';
+export * from './features/compare';
