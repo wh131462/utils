@@ -1,3 +1,5 @@
+import {SafeJson} from "../safe-json";
+
 /**
  * 输出美化日志
  * @example
@@ -23,18 +25,8 @@ export class Logger {
     };
 
     static _log(type: LoggerType, ...messages: any[]) {
-        const message = messages
-            .map((o) => {
-                switch (typeof o) {
-                    case 'object':
-                        if (o == null) return 'null';
-                        return JSON.stringify(o);
-                    default:
-                        return o;
-                }
-            })
-            .join('\t');
-        console.log(`%c${type.toUpperCase()}%c${new Date().toLocaleTimeString()}%c${message}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle);
+        const [message,...others] = messages;
+        console.log(`%c${type.toUpperCase()}%c${new Date().toLocaleTimeString()}%c${SafeJson.stringify(message)}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle,...others);
     }
 
     /**
