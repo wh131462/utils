@@ -6,3 +6,4 @@ export * from './features/logger';
 export * from './features/curry';
 export * from './features/safe-json';
 export * from './features/compare';
+export * from './features/tree';
