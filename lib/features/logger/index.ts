@@ -11,11 +11,15 @@ import {SafeJson} from "../safe-json";
 type LoggerType = 'info' | 'warn' | 'error' | 'debug';
 
 export class Logger {
+    static get isDarkMode() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
     static _logoStyle = (bgColor = '#000000', color = '#FFFFFF') => {
         return `padding:4px 8px;background: ${bgColor};color: ${color};border-radius: 4px 0 0 4px;`;
     };
     static _timeStyle = `padding:4px 8px;background: #333;color: #FFF;border-radius: 0 4px 4px 0;`;
-    static _textStyle = `color: #333; font-weight: bold;text-indent:.618em;`;
+    static _textStyle = `color: ${Logger.isDarkMode ? '#FFF' : '#333'}; font-weight: bold;text-indent:.618em;`;
 
     static LogoColors: Record<LoggerType, string> = {
         info: '#0000FF',
@@ -25,8 +29,8 @@ export class Logger {
     };
 
     static _log(type: LoggerType, ...messages: any[]) {
-        const [message,...others] = messages;
-        console.log(`%c${type.toUpperCase()}%c${new Date().toLocaleTimeString()}%c${SafeJson.stringify(message)}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle,...others);
+        const [message, ...others] = messages;
+        console.log(`%c${type.toUpperCase()}%c${new Date().toLocaleTimeString()}%c${SafeJson.stringify(message)}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle, ...others);
     }
 
     /**
