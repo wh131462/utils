@@ -30,7 +30,11 @@ export class Logger {
 
     static _log(type: LoggerType, ...messages: any[]) {
         const [message, ...others] = messages;
-        console.log(`%c${type.toUpperCase()}%c${new Date().toLocaleTimeString()}%c${SafeJson.stringify(message)}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle, ...others);
+        const hasMessage = typeof message === 'string';
+        if (!hasMessage) {
+            others.unshift(message);
+        }
+        console.log(`%c${type.toUpperCase()}%c${new Date().toLocaleTimeString()}%c${hasMessage? message : ''}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle, ...others);
     }
 
     /**
