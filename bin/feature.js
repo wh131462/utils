@@ -4,7 +4,8 @@ import {logger} from "#node-lib/common/logger.js";
 import {setRoot} from "#node-lib/common/root.js";
 import {comfirm, inquire} from "#node-lib/common/promot.js";
 import {join} from "path";
-import {mkdirSync, writeFileSync, existsSync, appendFileSync} from "fs";
+import {appendFileSync, existsSync, mkdirSync, writeFileSync} from "fs";
+import {specTemplate} from "#node-lib/templates/spec.template.js";
 
 const version = process.env.VERSION ?? "0.0.0";
 
@@ -28,13 +29,14 @@ program
 
         const targetDir = join(featuresDir, projectName);
         const indexPath = join(targetDir, "index.ts");
+        const specPath = join(targetDir, `${projectName}.spec.ts`);
 
         // 确认创建新特性
         const isCreate = await comfirm(`是否确认创建 ${targetDir}?`);
         if (isCreate) {
             // 检查目录是否存在
             if (!existsSync(targetDir)) {
-                mkdirSync(targetDir, { recursive: true });
+                mkdirSync(targetDir, {recursive: true});
                 logger.info(`创建目录: ${targetDir}`);
             } else {
                 logger.warn(`目录已存在: ${targetDir}`);
@@ -46,6 +48,14 @@ program
                 logger.info(`创建文件: ${indexPath}`);
             } else {
                 logger.warn(`文件已存在: ${indexPath}`);
+            }
+
+            // 创建 spec 文件
+            if (!existsSync(specPath)) {
+                writeFileSync(specPath, `// ${projectName}.spec.ts\n${specTemplate}`);
+                logger.info(`创建文件: ${specPath}`);
+            } else {
+                logger.warn(`文件已存在: ${specPath}`);
             }
 
             // 更新 lib/main.ts 文件

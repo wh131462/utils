@@ -1,5 +1,3 @@
-import {SafeJson} from "../safe-json";
-
 /**
  * 输出美化日志
  * @example
@@ -27,6 +25,18 @@ export class Logger {
         error: '#FF0000',
         debug: '#000000'
     };
+    private static _formatTime(date: Date): string {
+        // 分解日期各部分并补零
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份从0开始需+1
+        const day = date.getDate().toString().padStart(2, '0');
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        const milliseconds = date.getMilliseconds().toString().padStart(3, '0');
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${milliseconds}`;
+    }
 
     static _log(type: LoggerType, ...messages: any[]) {
         const [message, ...others] = messages;
@@ -34,7 +44,7 @@ export class Logger {
         if (!hasMessage) {
             others.unshift(message);
         }
-        console.log(`%c${type.toUpperCase()}%c${new Date().toLocaleTimeString()}%c${hasMessage? message : ''}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle, ...others);
+        console.log(`%c${type.toUpperCase()}%c${Logger._formatTime(new Date())}%c${hasMessage ? message : ''}`, Logger._logoStyle(Logger.LogoColors[type]), Logger._timeStyle, Logger._textStyle, ...others);
     }
 
     /**

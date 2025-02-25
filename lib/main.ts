@@ -8,3 +8,4 @@ export * from './features/safe-json';
 export * from './features/compare';
 export * from './features/tree';
 export * from './features/work-utility';
+export * from './features/merge';
